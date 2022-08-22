@@ -1,24 +1,18 @@
 class Person
-  def initialize(name = 'Unknown', age, parent_permission: true)
+  def initialize(age, _parent_permission: true, name: 'Unknown')
     @id = id
     @name = name
     @age = age
   end
 
   # Getter for id
-  def id
-    @id
-  end
+  attr_reader :id
   # Getters/setters for name and age
   attr_accessor :name
   attr_accessor :age
 
-  def is_of_age?
-    if @age >= 18
-      true
-    else
-      false
-    end
+  def of_age?
+    @age >= 18
   end
 
   private
