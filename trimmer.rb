@@ -1,0 +1,7 @@
+require_relative './decorator'
+
+class TrimmerDecorator < Decorator
+  def correct_name
+    return @nameable.truncate(10) if @nameable.correct_name.length > 10
+  end
+end

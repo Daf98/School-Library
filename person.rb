@@ -1,6 +1,9 @@
-class Person
-  def initialize(age, _parent_permission: true, name: 'Unknown')
-    @id = id
+require_relative './nameable'
+
+class Person < Nameable
+  def initialize(age, name = 'Unknown', _parent_permission: true)
+    super()
+    @id = Random.rand(1..100)
     @name = name
     @age = age
   end
@@ -19,5 +22,9 @@ class Person
 
   def can_use_services?
     true if @age >= 18 || parent_permission == true
+  end
+
+  def correct_name
+    @name
   end
 end
