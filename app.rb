@@ -16,12 +16,11 @@ class App
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'
-    puts '3 - Create a teacher'
-    puts '4 - Create a student'
-    puts '5 - Create a book'
-    puts '6 - Create a rental'
-    puts '7 - List all rentals for a given person'
-    puts '0 - Quit app'
+    puts '3 - Create a person (student/teacher)'
+    puts '4 - Create a book'
+    puts '5 - Create a rental'
+    puts '6 - List all rentals for a given person'
+    puts '7 - Exit'
   end
 
   # Turn input into methods for the user
@@ -30,21 +29,20 @@ class App
     menu_options = {
       '1' => method(:list_books),
       '2' => method(:list_people),
-      '3' => method(:create_teacher),
-      '4' => method(:create_student),
-      '5' => method(:create_book),
-      '6' => method(:create_rental),
-      '7' => method(:list_rentals)
+      '3' => method(:create_person),
+      '4' => method(:create_book),
+      '5' => method(:create_rental),
+      '6' => method(:list_rentals)
     }
     input = gets.chomp
 
     # Call methods depending on input
-    if input.to_i.> 0 && input.to_i < 7
+    if input.to_i.positive? && input.to_i < 7
       menu_options[input].call
-    elsif input.zero?
+    elsif input == 7
       puts 'Thank you for using this app!'
     else
-      puts 'Error: wrong number input'
+      puts 'Error: wrong number input.'
       run
     end
   end
@@ -64,15 +62,15 @@ class App
   # 2 - List all people
   def list_people
     puts 'List of people:'
-    @people.each do |person|
-      puts person.name
+    @people.each do |person, index|
+      puts `#{index + 1}) #{person.name}`
     end
     show_link_to_main
   end
 
-  # 3 - Create a person
+  ## Create a person
   def create_person
-    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+    print 'Do you want to create a student (1) or a teacher (2)? Input the number:'
     number = gets.chomp.to_i
     case number
     when 1
@@ -84,7 +82,7 @@ class App
     end
   end
 
-  # 3.a - Create a student
+  # 3 - Create a student
   def create_student
     print 'Name: '
     name = gets.chomp
@@ -100,7 +98,7 @@ class App
     run
   end
 
-  # 3.a - Create a student
+  # 4 - Create a teacher
   def create_teacher
     print 'Name: '
     name = gets.chomp
@@ -110,16 +108,44 @@ class App
     specialization = gets.chomp
     new_teacher = Teacher.new(name, age, specialization)
     @people.push(new_teacher)
-    puts 'Student created successfully!'
+    puts 'Teacher created successfully'
     run
   end
 
+  # 5 - Create a book
   def create_book
-    # create book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    @books.push(book)
+    puts 'Book created successfully'
+    run
   end
 
+  # 6 - Create a rental
   def create_rental
-    # create rental
+    puts 'Select a book from the following list by number'
+    @books.each_with_index { |book, index| puts `#{index + 1} - #{book.title} by #{book.author}` }
+    book_index = gets.chomp
+    unless book_index.to_i.positive? && book_index.to_i <= @books.length
+      puts 'Invalid book number, please try again'
+      create_rental
+    end
+    puts 'Select a person from the following list by number (not id)'
+    @people.each_with_index { |person, index| puts `#{index + 1}) #{person.name}` }
+    person_index = gets.chomp
+    unless person_index.to_i.positive? && person_index.to_i <= @people.length
+      puts 'Invalid person number, please try again'
+      create rental
+    end
+    print 'Date:'
+    date = gets.chomp
+    new_rental = Rental.new(@books[book_index.to_i - 1], @people[person_index.to_i - 1], date)
+    @rentals.push(new_rental)
+    puts 'Rental created successfully'
+    run
   end
 
   def list_rentals(id)
