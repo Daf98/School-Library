@@ -1,4 +1,5 @@
 require './nameable'
+require './rental'
 
 class Person < Nameable
   def initialize(age, name = 'Unknown', _parent_permission: true)
@@ -6,10 +7,11 @@ class Person < Nameable
     @id = Random.rand(1..100)
     @name = name
     @age = age
+    @rentals = []
   end
 
   # Getter for id
-  attr_reader :id
+  attr_reader :id, :rental
   # Getters/setters for name and age
   attr_accessor :name
   attr_accessor :age
@@ -24,5 +26,11 @@ class Person < Nameable
 
   def of_age?
     @age >= 18
+  end
+
+  # Create the has-many side of Person and Rental (a person has many rentals).
+  def add_rentals(rental)
+    @rentals.push(rental)
+    rental.person = self
   end
 end
