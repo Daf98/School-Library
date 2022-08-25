@@ -11,7 +11,7 @@ class Person < Nameable
   end
 
   # Getter for id
-  attr_reader :id, :rental
+  attr_reader :id, :rentals
   # Getters/setters for name and age
   attr_accessor :name
   attr_accessor :age
