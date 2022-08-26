@@ -140,14 +140,14 @@ class App
   # 5 - Create a rental
   def create_rental
     puts 'Select a book from the following list by number'
-    @books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
+    @books.each_with_index { |book, index| puts "#{index + 1} - #{book.title} by #{book.author}" }
     book_index = gets.chomp
     unless book_index.to_i.positive? && book_index.to_i <= @books.length
       puts 'Invalid book number, please try again'
       create_rental
     end
     puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index { |person, index| puts "#{index + 1}) Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    @people.each_with_index { |person, i| puts "#{i + 1}) #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     person_index = gets.chomp
     unless person_index.to_i.positive? && person_index.to_i <= @people.length
       puts 'Invalid person number, please try again'
@@ -163,10 +163,9 @@ class App
 
   # 6 - List all rentals for a given person id
   def list_rentals
-    puts 'ID of person: '
+    puts 'ID of person:'
     person_id = gets.chomp.to_i
     @rentals.filter do |rental|
-      puts 'Rentals: '
       puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}" if rental.person.id == person_id
     end
   end
