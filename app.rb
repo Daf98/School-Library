@@ -9,7 +9,18 @@ class App
     @books = []
     @rentals = []
   end
-  attr_reader :people, :books, :rental
+  attr_reader :people, :books, :rentals
+
+  # Create main interface
+  def go_back
+    puts 'Type 0 to go back to the menu'
+    if gets.chomp == '0'
+      run
+    else
+      puts 'Error: wrong input'
+      go_back
+    end
+  end
 
   # Create UI
   def menu_selector
@@ -39,7 +50,7 @@ class App
     # Call methods depending on input
     if input.to_i.positive? && input.to_i < 7
       menu_options[input].call
-    elsif input == 7
+    elsif input.to_i == 7
       puts 'Thank you for using this app!'
     else
       puts 'Error: wrong number input.'
@@ -53,22 +64,22 @@ class App
 
   def list_books
     puts 'List of books:'
-    @books.each_with_index do |book, _index|
+    @books.each_with_index do |book, index|
       puts `#{index + 1} - #{book.title} by #{book.author}`
     end
-    show_link_to_main
+    go_back
   end
 
   # 2 - List all people
   def list_people
     puts 'List of people:'
-    @people.each do |person, index|
-      puts `#{index + 1}) #{person.name}`
+    @people.each_with_index do |person|
+      puts "#{person.name}: #{person.age}, #{person.classroom}"
     end
-    show_link_to_main
+    go_back
   end
 
-  ## Create a person
+  # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? Input the number:'
     number = gets.chomp.to_i
@@ -82,7 +93,7 @@ class App
     end
   end
 
-  # 3 - Create a student
+  # 3a - Create a student
   def create_student
     print 'Name: '
     name = gets.chomp
@@ -90,15 +101,15 @@ class App
     age = gets.chomp
     print 'Classroom: '
     classroom = gets.chomp
-    print 'Does this student have parental permission?: [Y/N]'
-    parent_permission = true if gets.chomp == 'Y'
-    new_student = Student.new(name, age, classroom, parent_permission)
+    # print 'Does this student have parental permission?: [Y/N]'
+    # parent_permission = true if gets.chomp == 'Y'
+    new_student = Student.new(name, age, classroom)
     @people.push(new_student)
     puts 'Student created successfully!'
     run
   end
 
-  # 4 - Create a teacher
+  # 3b - Create a teacher
   def create_teacher
     print 'Name: '
     name = gets.chomp
@@ -112,7 +123,7 @@ class App
     run
   end
 
-  # 5 - Create a book
+  # 4 - Create a book
   def create_book
     print 'Title: '
     title = gets.chomp
@@ -124,7 +135,7 @@ class App
     run
   end
 
-  # 6 - Create a rental
+  # 5 - Create a rental
   def create_rental
     puts 'Select a book from the following list by number'
     @books.each_with_index { |book, index| puts `#{index + 1} - #{book.title} by #{book.author}` }
@@ -148,7 +159,20 @@ class App
     run
   end
 
-  def list_rentals(id)
-    # list rental according to student id
+  # 6 - List all rentals for a given person id
+  def list_rentals
+    puts 'ID of person:'
+    @people.each_with_index do |person, index|
+      puts `Books rented by #{person.name}:`
+      unless gets.chomp.to_i.positive? && gets - chomp.to_i <= @people.length
+        puts 'Invalid person number, please try again'
+        create_rental
+      end
+    end
+    @rentals.filter do |rental|
+      if rental.person == @people[gets.chomp.to_i - 1]
+        puts `Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}`
+      end
+    end
   end
 end
