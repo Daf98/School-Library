@@ -101,11 +101,9 @@ class App
     name = gets.chomp
     print 'Age: '
     age = gets.chomp
-    print 'Classroom: '
-    classroom = gets.chomp
     print 'Does this student have parental permission?: [Y/N]'
     parent_permission = true if gets.chomp == 'Y'
-    new_student = Student.new(name, age, classroom, parent_permission:)
+    new_student = Student.new(age, name, parent_permission:)
     @people.push(new_student)
     puts 'Student created successfully'
     run
@@ -119,7 +117,7 @@ class App
     age = gets.chomp
     print 'Specialization: '
     specialization = gets.chomp
-    new_teacher = Teacher.new(name, age, specialization)
+    new_teacher = Teacher.new(age, specialization, name)
     @people.push(new_teacher)
     puts 'Teacher created successfully'
     run
