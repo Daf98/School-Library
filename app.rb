@@ -24,13 +24,15 @@ class App
 
   # Create UI
   def menu_selector
+    puts 'Welcome to School Library App!'
+    puts ''
     puts 'Please choose an option by entering a number:'
     puts '1 - List all books'
     puts '2 - List all people'
-    puts '3 - Create a person (student/teacher)'
+    puts '3 - Create a person'
     puts '4 - Create a book'
     puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person'
+    puts '6 - List all rentals for a given person ID'
     puts '7 - Exit'
   end
 
@@ -81,7 +83,7 @@ class App
 
   # 3 - Create a person
   def create_person
-    print 'Do you want to create a student (1) or a teacher (2)? Input the number:'
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     number = gets.chomp.to_i
     case number
     when 1
@@ -105,7 +107,7 @@ class App
     parent_permission = true if gets.chomp == 'Y'
     new_student = Student.new(name, age, classroom, parent_permission:)
     @people.push(new_student)
-    puts 'Student created successfully!'
+    puts 'Student created successfully'
     run
   end
 
@@ -138,20 +140,20 @@ class App
   # 5 - Create a rental
   def create_rental
     puts 'Select a book from the following list by number'
-    @books.each_with_index { |book, index| puts "#{index + 1} - #{book.title} by #{book.author}" }
+    @books.each_with_index { |book, index| puts "#{index + 1}) Title: #{book.title}, Author: #{book.author}" }
     book_index = gets.chomp
     unless book_index.to_i.positive? && book_index.to_i <= @books.length
       puts 'Invalid book number, please try again'
       create_rental
     end
     puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index { |person, index| puts "#{index + 1}) Name: #{person.name}, ID: #{person.id}" }
+    @people.each_with_index { |person, index| puts "#{index + 1}) Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     person_index = gets.chomp
     unless person_index.to_i.positive? && person_index.to_i <= @people.length
       puts 'Invalid person number, please try again'
       create rental
     end
-    print 'Date:'
+    print 'Date: '
     date = gets.chomp
     new_rental = Rental.new(@books[book_index.to_i - 1], @people[person_index.to_i - 1], date)
     @rentals.push(new_rental)
@@ -161,9 +163,10 @@ class App
 
   # 6 - List all rentals for a given person id
   def list_rentals
-    puts 'ID of person:'
+    puts 'ID of person: '
     person_id = gets.chomp.to_i
     @rentals.filter do |rental|
+      puts 'Rentals: '
       puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}" if rental.person.id == person_id
     end
   end
