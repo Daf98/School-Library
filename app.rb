@@ -64,7 +64,7 @@ class App
 
   def list_books
     puts 'List of books:'
-    @books.each_with_index do |book, index|
+    @books.each_with_index do |book, _index|
       puts "Title: '#{book.title}', Author: #{book.author}"
     end
     go_back
@@ -73,7 +73,7 @@ class App
   # 2 - List all people
   def list_people
     puts 'List of people:'
-    @people.each_with_index do |person, i|
+    @people.each_with_index do |person, _i|
       puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     go_back
@@ -103,7 +103,7 @@ class App
     classroom = gets.chomp
     print 'Does this student have parental permission?: [Y/N]'
     parent_permission = true if gets.chomp == 'Y'
-    new_student = Student.new(name, age, classroom, parent_permission: parent_permission)
+    new_student = Student.new(name, age, classroom, parent_permission:)
     @people.push(new_student)
     puts 'Student created successfully!'
     run
@@ -145,7 +145,7 @@ class App
       create_rental
     end
     puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index { |person, index| puts "#{index + 1}) #{person.name}. ID: #{person.id}" }
+    @people.each_with_index { |person, index| puts "#{index + 1}) Name: #{person.name}, ID: #{person.id}" }
     person_index = gets.chomp
     unless person_index.to_i.positive? && person_index.to_i <= @people.length
       puts 'Invalid person number, please try again'
@@ -164,9 +164,7 @@ class App
     puts 'ID of person:'
     person_id = gets.chomp.to_i
     @rentals.filter do |rental|
-      if rental.person.id == person_id
-        puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}"
-      end
+      puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}" if rental.person.id == person_id
     end
   end
 end

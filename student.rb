@@ -2,17 +2,17 @@ require './person'
 require './classroom'
 
 class Student < Person
-    # Create the belongs-to side (a student belongs to a classroom).
-    attr_accessor :classroom
+  # Create the belongs-to side (a student belongs to a classroom).
+  attr_accessor :classroom
+
   def initialize(name = 'Unknown', age, classroom, parent_permission: false)
-    super(name, age, parent_permission: parent_permission)
+    super(name, age, parent_permission:)
     @classroom = classroom
   end
 
   def play_hooky
     "¯\(ツ)/¯"
   end
-
 
   # Make sure that when adding a student to a classroom it also sets the classroom for the student.
 
