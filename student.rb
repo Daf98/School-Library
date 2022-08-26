@@ -5,7 +5,7 @@ class Student < Person
     # Create the belongs-to side (a student belongs to a classroom).
     attr_accessor :classroom
   def initialize(name = 'Unknown', age, classroom, parent_permission: false)
-    super(name, age, classroom)
+    super(name, age, parent_permission: parent_permission)
     @classroom = classroom
   end
 

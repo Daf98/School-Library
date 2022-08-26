@@ -65,7 +65,7 @@ class App
   def list_books
     puts 'List of books:'
     @books.each_with_index do |book, index|
-      puts `#{index + 1} - #{book.title} by #{book.author}`
+      puts "Title: '#{book.title}', Author: #{book.author}"
     end
     go_back
   end
@@ -73,8 +73,8 @@ class App
   # 2 - List all people
   def list_people
     puts 'List of people:'
-    @people.each_with_index do |person|
-      puts "#{person.name}: #{person.age}, #{person.classroom}"
+    @people.each_with_index do |person, i|
+      puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
     go_back
   end
@@ -101,9 +101,9 @@ class App
     age = gets.chomp
     print 'Classroom: '
     classroom = gets.chomp
-    # print 'Does this student have parental permission?: [Y/N]'
-    # parent_permission = true if gets.chomp == 'Y'
-    new_student = Student.new(name, age, classroom)
+    print 'Does this student have parental permission?: [Y/N]'
+    parent_permission = true if gets.chomp == 'Y'
+    new_student = Student.new(name, age, classroom, parent_permission: parent_permission)
     @people.push(new_student)
     puts 'Student created successfully!'
     run
@@ -138,14 +138,14 @@ class App
   # 5 - Create a rental
   def create_rental
     puts 'Select a book from the following list by number'
-    @books.each_with_index { |book, index| puts `#{index + 1} - #{book.title} by #{book.author}` }
+    @books.each_with_index { |book, index| puts "#{index + 1} - #{book.title} by #{book.author}" }
     book_index = gets.chomp
     unless book_index.to_i.positive? && book_index.to_i <= @books.length
       puts 'Invalid book number, please try again'
       create_rental
     end
     puts 'Select a person from the following list by number (not id)'
-    @people.each_with_index { |person, index| puts `#{index + 1}) #{person.name}` }
+    @people.each_with_index { |person, index| puts "#{index + 1}) #{person.name}. ID: #{person.id}" }
     person_index = gets.chomp
     unless person_index.to_i.positive? && person_index.to_i <= @people.length
       puts 'Invalid person number, please try again'
@@ -162,16 +162,10 @@ class App
   # 6 - List all rentals for a given person id
   def list_rentals
     puts 'ID of person:'
-    @people.each_with_index do |person, index|
-      puts `Books rented by #{person.name}:`
-      unless gets.chomp.to_i.positive? && gets - chomp.to_i <= @people.length
-        puts 'Invalid person number, please try again'
-        create_rental
-      end
-    end
+    person_id = gets.chomp.to_i
     @rentals.filter do |rental|
-      if rental.person == @people[gets.chomp.to_i - 1]
-        puts `Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}`
+      if rental.person.id == person_id
+        puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}"
       end
     end
   end
