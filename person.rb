@@ -2,19 +2,20 @@ require './nameable'
 require './rental'
 
 class Person < Nameable
-  def initialize(age, name = 'Unknown', _parent_permission: true)
-    super()
-    @id = Random.rand(1..100)
-    @name = name
-    @age = age
-    @rentals = []
-  end
-
   # Getter for id
   attr_reader :id, :rentals
   # Getters/setters for name and age
   attr_accessor :name
   attr_accessor :age
+
+  def initialize(age, name = 'Unknown', parent_permission: false)
+    super()
+    @id = Random.rand(1..100)
+    @name = name
+    @age = age
+    @parent_permission = parent_permission
+    @rentals = []
+  end
 
   def can_use_services?
     true if @age >= 18 || parent_permission == true

@@ -1,9 +1,12 @@
 require './person'
 
 class Teacher < Person
-  def initialize(specialization)
-    super()
+  def initialize(age, specialization, name = 'Unknown')
+    super(age, name, parent_permission: true)
     @specialization = specialization
   end
-  can_use_services? == true
+
+  def can_use_services?
+    true
+  end
 end
