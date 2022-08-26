@@ -3,7 +3,7 @@ require './classroom'
 
 class Student < Person
   # Create the belongs-to side (a student belongs to a classroom).
-  attr_accessor :classroom
+  attr_reader :classroom
 
   def initialize(name = 'Unknown', age, classroom, parent_permission: false)
     super(name, age, parent_permission:)
