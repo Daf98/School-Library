@@ -138,6 +138,7 @@ class App
   # 5 - Create a rental
   def create_rental
     puts 'Select a book from the following list by number'
+
     @books.each_with_index { |book, index| puts "#{index + 1} - #{book.title} by #{book.author}" }
     book_index = gets.chomp
     unless book_index.to_i.positive? && book_index.to_i <= @books.length
@@ -149,7 +150,7 @@ class App
     person_index = gets.chomp
     unless person_index.to_i.positive? && person_index.to_i <= @people.length
       puts 'Invalid person number, please try again'
-      create rental
+      create_rental
     end
     print 'Date: '
     date = gets.chomp
