@@ -153,7 +153,7 @@ class App
       person_index = gets.chomp
       unless person_index.to_i.positive? && person_index.to_i <= @people.length
         puts 'Invalid person number, please try again'
-        create_rental
+        create rental
       end
       print 'Date: '
       date = gets.chomp
