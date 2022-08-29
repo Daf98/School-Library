@@ -3,6 +3,8 @@ require './teacher'
 require './book'
 require './rental'
 require './list_books'
+require './list_people'
+require './create_rental'
 
 class App
   def initialize
@@ -16,21 +18,8 @@ class App
 
   # 1 - List all books
   include ListBooks
-  # def list_books
-  #   puts 'List of books:'
-  #   @books.each_with_index do |book, _index|
-  #     puts "Title: '#{book.title}', Author: #{book.author}"
-  #   end
-  # end
-
-  # 2 - List all people
-  def list_people
-    puts 'List of people:'
-    @people.each_with_index do |person, _i|
-      puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-    end
-  end
-
+  include ListPeople
+  include CreateRental
   # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
@@ -82,39 +71,6 @@ class App
     puts 'Book created successfully'
   end
 
-  # 5 - Create a rental
-  # rubocop:disable Metrics/MethodLength
-  # rubocop:disable Metrics/PerceivedComplexity
-  # rubocop:disable Metrics/CyclomaticComplexity
-  def create_rental
-    if @books.length.positive? && @people.length.positive?
-      puts 'Select a book from the following list by number'
-      @books.each_with_index { |book, index| puts "#{index + 1} - #{book.title} by #{book.author}" }
-      book_index = gets.chomp
-      unless book_index.to_i.positive? && book_index.to_i <= @books.length
-        puts 'Invalid book number, please try again'
-        create_rental
-      end
-      puts 'Select a person from the following list by number (not id)'
-      @people.each_with_index { |person, i| puts "#{i + 1}) #{person.name}, ID: #{person.id}, Age: #{person.age}" }
-      person_index = gets.chomp
-      unless person_index.to_i.positive? && person_index.to_i <= @people.length
-        puts 'Invalid person number, please try again'
-        create_rental
-      end
-      print 'Date: '
-      date = gets.chomp
-      new_rental = Rental.new(@books[book_index.to_i - 1], @people[person_index.to_i - 1], date)
-      @rentals.push(new_rental)
-      puts 'Rental created successfully'
-    else
-      puts 'No books/people found'
-    end
-  end
-
-  # rubocop:enable Metrics/MethodLength
-  # rubocop:enable Metrics/PerceivedComplexity
-  # rubocop:enable Metrics/CyclomaticComplexity
   # 6 - List all rentals for a given person id
   def list_rentals
     puts 'ID of person:'
