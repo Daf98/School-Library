@@ -2,6 +2,7 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
+require './list_books'
 
 class App
   def initialize
@@ -9,68 +10,18 @@ class App
     @books = []
     @rentals = []
   end
-  attr_reader :people, :books, :rentals
-
-  # Create main interface
-  def go_back
-    puts 'Type 0 to go back to the menu'
-    if gets.chomp == '0'
-      run
-    else
-      puts 'Error: wrong input'
-      go_back
-    end
-  end
-
-  # Create UI
-  def menu_selector
-    puts 'Welcome to School Library App!'
-    puts ''
-    puts 'Please choose an option by entering a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person ID'
-    puts '7 - Exit'
-  end
-
-  # Turn input into methods for the user
-  def run
-    menu_selector
-    menu_options = {
-      '1' => method(:list_books),
-      '2' => method(:list_people),
-      '3' => method(:create_person),
-      '4' => method(:create_book),
-      '5' => method(:create_rental),
-      '6' => method(:list_rentals)
-    }
-    input = gets.chomp
-
-    # Call methods depending on input
-    if input.to_i.positive? && input.to_i < 7
-      menu_options[input].call
-    elsif input.to_i == 7
-      puts 'Thank you for using this app!'
-    else
-      puts 'Error: wrong number input.'
-      run
-    end
-  end
+  attr_accessor :people, :books, :rentals
 
   ## Create methods
 
   # 1 - List all books
-
-  def list_books
-    puts 'List of books:'
-    @books.each_with_index do |book, _index|
-      puts "Title: '#{book.title}', Author: #{book.author}"
-    end
-    go_back
-  end
+  include ListBooks
+  # def list_books
+  #   puts 'List of books:'
+  #   @books.each_with_index do |book, _index|
+  #     puts "Title: '#{book.title}', Author: #{book.author}"
+  #   end
+  # end
 
   # 2 - List all people
   def list_people
@@ -78,7 +29,6 @@ class App
     @people.each_with_index do |person, _i|
       puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
-    go_back
   end
 
   # 3 - Create a person
@@ -106,7 +56,6 @@ class App
     new_student = Student.new(age, name, parent_permission:)
     @people.push(new_student)
     puts 'Student created successfully'
-    run
   end
 
   # 3b - Create a teacher
@@ -120,7 +69,6 @@ class App
     new_teacher = Teacher.new(age, specialization, name)
     @people.push(new_teacher)
     puts 'Teacher created successfully'
-    run
   end
 
   # 4 - Create a book
@@ -132,7 +80,6 @@ class App
     book = Book.new(title, author)
     @books.push(book)
     puts 'Book created successfully'
-    run
   end
 
   # 5 - Create a rental
@@ -160,9 +107,8 @@ class App
       new_rental = Rental.new(@books[book_index.to_i - 1], @people[person_index.to_i - 1], date)
       @rentals.push(new_rental)
       puts 'Rental created successfully'
-      run
     else
-      go_back
+      puts 'No books/people found'
     end
   end
 
