@@ -1,6 +1,5 @@
 require './app'
 
-
 class Main
   def initialize
     @app = App.new
@@ -65,4 +64,4 @@ class Main
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/CyclomaticComplexity
 end
-main
+Main.new.menu_selector
