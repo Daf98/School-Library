@@ -11,7 +11,6 @@ class App
   end
   attr_accessor :people, :books, :rentals
 
-
   ## Create methods
 
   # 1 - List all books

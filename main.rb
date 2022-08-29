@@ -1,7 +1,11 @@
 require './app'
 
 class Main
+  def initialize
+    @app = App.new
+  end
   attr_accessor :people, :books, :rentals
+
   # Create main interface
   def go_back
     puts 'Type 0 to go back to the menu'
@@ -30,41 +34,43 @@ class Main
   end
 
   # Turn input into methods for the user
-    def run_options(option)
-      app = App.new 
-      case option
-      when 1
-        app.list_books
-        go_back
-      when 2
-        app.list_people
-        go_back
-      when 6
-        app.list_rentals
-        go_back
-      when 7
-        puts 'Goodbye'
-        exit
-      when 4
-        app.create_book
-        menu_selector
-      when 5
-        app.create_rental
-        menu_selector
-      when 3
-        app.create_person
-        menu_selector
-      end
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/CyclomaticComplexity
+  def run_options(option)
+    case option
+    when 1
+      @app.list_books
+      go_back
+    when 2
+      @app.list_people
+      go_back
+    when 3
+      @app.create_person
+      menu_selector
+    when 4
+      @app.create_book
+      menu_selector
+    when 5
+      @app.create_rental
+      menu_selector
+    when 6
+      @app.list_rentals
+      go_back
+    when 7
+      puts 'Goodbye'
+      exit
     end
-
-    # Call methods depending on input
-    # if input.to_i.positive? && input.to_i < 7
-    #   menu_options[input].call
-    # elsif input.to_i == 7
-    #   puts 'Thank you for using this app!'
-    # else
-    #   puts 'Error: wrong number input.'
-    #   run
-    # end
   end
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # Call methods depending on input
+  # if input.to_i.positive? && input.to_i < 7
+  #   menu_options[input].call
+  # elsif input.to_i == 7
+  #   puts 'Thank you for using this app!'
+  # else
+  #   puts 'Error: wrong number input.'
+  #   run
+  # end
+end
 Main.new.menu_selector
