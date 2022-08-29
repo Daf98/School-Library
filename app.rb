@@ -2,6 +2,7 @@ require './student'
 require './teacher'
 require './book'
 require './rental'
+require './list_books'
 
 class App
   def initialize
@@ -14,13 +15,13 @@ class App
   ## Create methods
 
   # 1 - List all books
-
-  def list_books
-    puts 'List of books:'
-    @books.each_with_index do |book, _index|
-      puts "Title: '#{book.title}', Author: #{book.author}"
-    end
-  end
+  include ListBooks
+  # def list_books
+  #   puts 'List of books:'
+  #   @books.each_with_index do |book, _index|
+  #     puts "Title: '#{book.title}', Author: #{book.author}"
+  #   end
+  # end
 
   # 2 - List all people
   def list_people
