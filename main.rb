@@ -63,14 +63,5 @@ class Main
   end
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/CyclomaticComplexity
-  # Call methods depending on input
-  # if input.to_i.positive? && input.to_i < 7
-  #   menu_options[input].call
-  # elsif input.to_i == 7
-  #   puts 'Thank you for using this app!'
-  # else
-  #   puts 'Error: wrong number input.'
-  #   run
-  # end
 end
 Main.new.menu_selector
