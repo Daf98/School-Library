@@ -1,7 +1,7 @@
 require './app'
 
 class Main
-  attr_accessor :people, :books, :rentals
+  attr_reader :people, :books, :rentals
   # Create main interface
   def go_back
     puts 'Type 0 to go back to the menu'
