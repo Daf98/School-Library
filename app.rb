@@ -9,7 +9,7 @@ class App
     @books = []
     @rentals = []
   end
-  attr_reader :people, :books, :rentals
+  attr_accessor :people, :books, :rentals
 
 
   ## Create methods
@@ -108,7 +108,7 @@ class App
       @rentals.push(new_rental)
       puts 'Rental created successfully'
     else
-      go_back
+      puts 'No books/people found'
     end
   end
 
