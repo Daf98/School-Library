@@ -21,7 +21,6 @@ class App
   include ListBooks
   include ListPeople
   include CreateRental
- 
   # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
