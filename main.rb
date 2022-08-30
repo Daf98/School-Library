@@ -21,8 +21,8 @@ class Main
   # Create UI
   def menu_selector
     books_books = File.read('./books.json')
-    # parsed_books = JSON.parse(books_books)
-    puts books_books
+    parsed_books = JSON.parse(books_books)
+    puts parsed_books
     puts 'Welcome to School Library App!'
     puts ''
     puts 'Please choose an option by entering a number:'
