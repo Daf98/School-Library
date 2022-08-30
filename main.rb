@@ -20,9 +20,9 @@ class Main
 
   # Create UI
   def menu_selector
-    books_books = File.read('./books.json')
-    parsed_books = JSON.parse(books_books)
-    puts parsed_books
+    # books_books = File.read('./books.json')
+    # parsed_books = JSON.parse(books_books)
+    # puts parsed_books
     puts 'Welcome to School Library App!'
     puts ''
     puts 'Please choose an option by entering a number:'
@@ -67,17 +67,19 @@ class Main
       # Preserving books
       books = @app.instance_variable_get(:@books)
       json_books = JSON.generate(books)
-      File.write('books.json', json_books, mode: 'a')
+      File.write('books.json', json_books, mode: 'a') unless File.zero?('books.json')
 
       # Preserving people
       people = @app.instance_variable_get(:@people)
-      json_people = JSON.generate(people)
-      File.write('people.json', json_people, mode: 'a')
+      unless File.zero?('people.json')
+        json_people = JSON.generate(people)
+        File.write('people.json', json_people, mode: 'a')
+      end
 
       # Preserving rentals
       rentals = @app.instance_variable_get(:@rentals)
       json_rentals = JSON.generate(rentals)
-      File.write('rentals.json', json_rentals, mode: 'a')
+      File.write('rentals.json', json_rentals, mode: 'a') unless File.zero?('rentals.json')
       exit
     end
   end
