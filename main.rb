@@ -1,4 +1,5 @@
 require './app'
+require 'json'
 
 class Main
   def initialize
@@ -19,6 +20,9 @@ class Main
 
   # Create UI
   def menu_selector
+    books_books = File.read('./books.json')
+    # parsed_books = JSON.parse(books_books)
+    puts books_books
     puts 'Welcome to School Library App!'
     puts ''
     puts 'Please choose an option by entering a number:'
@@ -57,7 +61,23 @@ class Main
       @app.list_rentals
       go_back
     when 7
-      puts 'Goodbye'
+      puts 'Thank you for using this app!'
+      ## Preserving data in files
+
+      # Preserving books
+      books = @app.instance_variable_get(:@books)
+      json_books = JSON.generate(books)
+      File.write('books.json', json_books, mode: 'a')
+
+      # Preserving people
+      people = @app.instance_variable_get(:@people)
+      json_people = JSON.generate(people)
+      File.write('people.json', json_people, mode: 'a')
+
+      # Preserving rentals
+      rentals = @app.instance_variable_get(:@rentals)
+      json_rentals = JSON.generate(rentals)
+      File.write('rentals.json', json_rentals, mode: 'a')
       exit
     end
   end
