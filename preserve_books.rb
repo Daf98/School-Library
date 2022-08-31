@@ -1,5 +1,5 @@
 module PreserveBooks
-    # Save data
+  # Save data
   def save_books
     # emtpy JSON file
     File.write('./books.json', '', mode: 'w')

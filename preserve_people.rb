@@ -1,5 +1,5 @@
 module PreservePeople
-def save_people
+  def save_people
     # emtpy JSON file
     File.write('./people.json', '', mode: 'w')
     # for each book in array, generate a JSON object with it
