@@ -7,6 +7,7 @@ class Main
     # @app.retrieve
     @app.books = @app.retrieve_books
     @app.people = @app.retrieve_people
+    @app.retrieve_rentals
   end
   attr_accessor :people, :books, :rentals
 
@@ -67,6 +68,7 @@ class Main
       puts 'Thank you for using this app!'
       @app.save_books
       @app.save_people
+      @app.save_rentals
       exit
     end
   end
