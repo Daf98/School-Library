@@ -4,6 +4,8 @@ require 'json'
 class Main
   def initialize
     @app = App.new
+    # @app.retrieve
+    @app.books = @app.retrieve
   end
   attr_accessor :people, :books, :rentals
 
@@ -62,24 +64,7 @@ class Main
       go_back
     when 7
       puts 'Thank you for using this app!'
-      ## Preserving data in files
-
-      # Preserving books
-      books = @app.instance_variable_get(:@books)
-      json_books = JSON.generate(books)
-      File.write('books.json', json_books, mode: 'a') unless File.zero?('books.json')
-
-      # Preserving people
-      people = @app.instance_variable_get(:@people)
-      unless File.zero?('people.json')
-        json_people = JSON.generate(people)
-        File.write('people.json', json_people, mode: 'a')
-      end
-
-      # Preserving rentals
-      rentals = @app.instance_variable_get(:@rentals)
-      json_rentals = JSON.generate(rentals)
-      File.write('rentals.json', json_rentals, mode: 'a') unless File.zero?('rentals.json')
+      @app.save
       exit
     end
   end
