@@ -1,8 +1,11 @@
 require './app'
+require 'json'
 
 class Main
   def initialize
     @app = App.new
+    # @app.retrieve
+    @app.books = @app.retrieve
   end
   attr_accessor :people, :books, :rentals
 
@@ -19,6 +22,9 @@ class Main
 
   # Create UI
   def menu_selector
+    # books_books = File.read('./books.json')
+    # parsed_books = JSON.parse(books_books)
+    # puts parsed_books
     puts 'Welcome to School Library App!'
     puts ''
     puts 'Please choose an option by entering a number:'
@@ -57,7 +63,8 @@ class Main
       @app.list_rentals
       go_back
     when 7
-      puts 'Goodbye'
+      puts 'Thank you for using this app!'
+      @app.save
       exit
     end
   end
