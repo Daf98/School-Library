@@ -5,7 +5,8 @@ class Main
   def initialize
     @app = App.new
     # @app.retrieve
-    @app.books = @app.retrieve
+    @app.books = @app.retrieve_books
+    @app.people = @app.retrieve_people
   end
   attr_accessor :people, :books, :rentals
 
@@ -64,7 +65,8 @@ class Main
       go_back
     when 7
       puts 'Thank you for using this app!'
-      @app.save
+      @app.save_books
+      @app.save_people
       exit
     end
   end
