@@ -15,12 +15,6 @@ describe Book do
         expect(@new_book.author).to eq('Koji Suzuki')
         expect(@new_book.author == 'Koji Suzuki').to be_truthy
       end
-      # it 'should create a new rental' do
-      #   new_person = Person.new(44)
-      #   @new_book.add_rentals(rental)
-      #   expect(@new_book.rentals.length).to eq(1)
-      #   expect(new_person.rentals.length).to eq(1)
-      # end
     end
   end
 end
