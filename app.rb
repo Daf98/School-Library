@@ -14,6 +14,7 @@ class App
     @people = []
     @books = []
     @rentals = []
+    @parsed_rentals = []
   end
   attr_accessor :people, :books, :rentals
 
@@ -78,12 +79,10 @@ class App
     puts 'Book created successfully'
   end
 
-  # 6 - List all rentals for a given person id
+  # 6 - List all rentals
   def list_rentals
-    puts 'ID of person:'
-    person_id = gets.chomp.to_i
-    @rentals.filter do |rental|
-      puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}" if rental.person.id == person_id
+    @parsed_rentals.each do |rental|
+      print rental
     end
   end
 end
