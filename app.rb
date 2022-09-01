@@ -81,6 +81,7 @@ class App
 
   # 6 - List all rentals
   def list_rentals
+    puts 'List of rentals: '
     @parsed_rentals.each do |rental|
       print "Name: #{rental[0]}, Book: #{rental[1]}, Date: #{rental[2]}\n"
     end

@@ -1,4 +1,4 @@
-## Copyright 2021, Dafne Azzolina
+## Copyright 2021, Dafne Azzolina, Fabien Brathwaite
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this School-Library and associated documentation files, to deal in the School-Library without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the School-Library, and to permit persons to whom the School-Library is furnished to do so, subject to the following conditions:
 

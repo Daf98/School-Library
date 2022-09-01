@@ -1,4 +1,3 @@
-{"json_class":"Student","a":["35","Fabien",{"parent_permission":true}]}
-{"json_class":"Student","a":["24","Daf",{"parent_permission":false}]}
-{"json_class":"Student","a":["24","Daf",{"parent_permission":false}]}
 {"json_class":"Student","a":["24","Daf",{"parent_permission":true}]}
+{"json_class":"Student","a":["35","Fabien",{"parent_permission":false}]}
+{"json_class":"Teacher","a":["41","Maths","Edna"]}
