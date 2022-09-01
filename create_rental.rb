@@ -3,6 +3,7 @@ module CreateRental
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/PerceivedComplexity
   # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/AbcSize
   def create_rental
     if @books.length.positive? && @people.length.positive?
       puts 'Select a book from the following list by number'
@@ -23,6 +24,7 @@ module CreateRental
       date = gets.chomp
       new_rental = Rental.new(@books[book_index.to_i - 1], @people[person_index.to_i - 1], date)
       @rentals.push(new_rental)
+      @parsed_rentals.push([@people[person_index.to_i - 1].name, @books[book_index.to_i - 1].title, date])
       puts 'Rental created successfully'
     else
       puts 'No books/people found'
@@ -32,4 +34,5 @@ module CreateRental
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/PerceivedComplexity
   # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/AbcSize
 end

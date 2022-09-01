@@ -5,12 +5,16 @@ require './rental'
 require './list_books'
 require './list_people'
 require './create_rental'
+require './preserve_books'
+require './preserve_people'
+require './preserve_rentals'
 
 class App
   def initialize
     @people = []
     @books = []
     @rentals = []
+    @parsed_rentals = []
   end
   attr_accessor :people, :books, :rentals
 
@@ -21,6 +25,9 @@ class App
   include ListBooks
   include ListPeople
   include CreateRental
+  include PreserveBooks
+  include PreservePeople
+  include PreserveRentals
   # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
@@ -42,7 +49,7 @@ class App
     print 'Age: '
     age = gets.chomp
     print 'Does this student have parental permission?: [Y/N]'
-    parent_permission = true if gets.chomp == 'Y'
+    parent_permission = gets.chomp.upcase == 'Y'
     new_student = Student.new(age, name, parent_permission:)
     @people.push(new_student)
     puts 'Student created successfully'
@@ -72,12 +79,11 @@ class App
     puts 'Book created successfully'
   end
 
-  # 6 - List all rentals for a given person id
+  # 6 - List all rentals
   def list_rentals
-    puts 'ID of person:'
-    person_id = gets.chomp.to_i
-    @rentals.filter do |rental|
-      puts "Date: #{rental.date}, Book #{rental.book.title} by #{rental.book.author}" if rental.person.id == person_id
+    puts 'List of rentals: '
+    @parsed_rentals.each do |rental|
+      print "Name: #{rental[0]}, Book: #{rental[1]}, Date: #{rental[2]}\n"
     end
   end
 end

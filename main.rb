@@ -1,8 +1,13 @@
 require './app'
+require 'json'
 
 class Main
   def initialize
     @app = App.new
+    # @app.retrieve
+    @app.books = @app.retrieve_books
+    @app.people = @app.retrieve_people
+    @app.retrieve_rentals
   end
   attr_accessor :people, :books, :rentals
 
@@ -27,7 +32,7 @@ class Main
     puts '3 - Create a person'
     puts '4 - Create a book'
     puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person ID'
+    puts '6 - List all rentals'
     puts '7 - Exit'
     option = gets.chomp.to_i
     run_options(option)
@@ -57,7 +62,10 @@ class Main
       @app.list_rentals
       go_back
     when 7
-      puts 'Goodbye'
+      puts 'Thank you for using this app!'
+      @app.save_books
+      @app.save_people
+      @app.save_rentals
       exit
     end
   end
