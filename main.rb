@@ -7,7 +7,12 @@ class Main
     # @app.retrieve
     @app.books = @app.retrieve_books
     @app.people = @app.retrieve_people
+<<<<<<< HEAD
     @app.retrieve_rentals
+=======
+    @app.rentals = @app.retrieve_rentals
+    
+>>>>>>> 4b98fbf06b3718d166e20f28d271b004d6a98eef
   end
   attr_accessor :people, :books, :rentals
 

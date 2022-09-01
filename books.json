@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 {"json_class":"Book","a":["IT","Stephen King"]}
 {"json_class":"Book","a":["Ringu","Koji Suzuki"]}
+=======
+{"json_class":"Book","a":["wertweer","gfdgfdg"]}
+{"json_class":"Book","a":["fgergfd","ytujht"]}
+>>>>>>> 4b98fbf06b3718d166e20f28d271b004d6a98eef

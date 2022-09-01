@@ -22,7 +22,7 @@ module CreateRental
       end
       print 'Date: '
       date = gets.chomp
-      new_rental = Rental.new(@books[book_index.to_i - 1], @people[person_index.to_i - 1], date)
+      new_rental = Rental.new(books[book_index.to_i - 1], people[person_index.to_i - 1], date)
       @rentals.push(new_rental)
       @parsed_rentals.push([@people[person_index.to_i - 1].name, @books[book_index.to_i - 1].title, date])
       puts 'Rental created successfully'

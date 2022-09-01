@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 ["Daf","Ringu","2022/09/01"]
 ["Fabien","IT","2022/09/04"]
+=======
+{"json_class":"Rental","rental":[{"json_class":"Book","a":["wertweer","gfdgfdg"]},{"json_class":"Teacher","a":["45","Spec","Edna"]},"2/3/4"]}
+>>>>>>> 4b98fbf06b3718d166e20f28d271b004d6a98eef
