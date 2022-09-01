@@ -49,7 +49,7 @@ class App
     print 'Age: '
     age = gets.chomp
     print 'Does this student have parental permission?: [Y/N]'
-    parent_permission = true if gets.chomp == 'Y'
+    parent_permission = gets.chomp.upcase == 'Y'
     new_student = Student.new(age, name, parent_permission:)
     @people.push(new_student)
     puts 'Student created successfully'
@@ -82,7 +82,7 @@ class App
   # 6 - List all rentals
   def list_rentals
     @parsed_rentals.each do |rental|
-      print "Name: #{rental[0]}\n"
+      print "Name: #{rental[0]}, Book: #{rental[1]}, Date: #{rental[2]}\n"
     end
   end
 end
