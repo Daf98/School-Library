@@ -3,6 +3,7 @@ module CreateRental
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/PerceivedComplexity
   # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/AbcSize
   def create_rental
     if @books.length.positive? && @people.length.positive?
       puts 'Select a book from the following list by number'
@@ -33,4 +34,5 @@ module CreateRental
   # rubocop:enable Metrics/MethodLength
   # rubocop:enable Metrics/PerceivedComplexity
   # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/AbcSize
 end

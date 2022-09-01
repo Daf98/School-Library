@@ -12,5 +12,4 @@ class Rental
     @person = person
     person.rentals.push(self)
   end
-
 end
