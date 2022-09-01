@@ -19,7 +19,7 @@ class App
     @rentals = []
     @parsed_rentals = []
   end
-  
+
   def list_books
     @books
   end
@@ -36,7 +36,6 @@ class App
   def list_rentals_id(id)
     @rentals.select { |rental| rental.person.id == id }
   end
-  
 
   ## Create methods
 
@@ -48,10 +47,7 @@ class App
   include PreserveBooks
   include PreservePeople
   include PreserveRentals
-<<<<<<< HEAD
-=======
 
->>>>>>> 4b98fbf06b3718d166e20f28d271b004d6a98eef
   # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
