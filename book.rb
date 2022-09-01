@@ -6,7 +6,7 @@ class Book
     @author = author
     @rentals = []
   end
-  attr_accessor :title, :author, :rentals
+  attr_accessor :title, :author, :rentals, :rental
 
   # Create the has-many side of Book and Rental (a book has many rentals).
   def add_rentals(rental)

@@ -13,6 +13,9 @@ describe Teacher do
       it 'should return a correct name' do
         expect(@new_teacher.name).to eq('Fabien')
       end
+      it 'should return services as true' do
+        expect(@new_teacher.can_use_services?).to be_truthy
+      end
     end
   end
 end
