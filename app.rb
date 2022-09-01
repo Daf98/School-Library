@@ -10,13 +10,32 @@ require './preserve_people'
 require './preserve_rentals'
 
 class App
+  attr_accessor :rentals
+  attr_writer :people, :books
+
   def initialize
     @people = []
     @books = []
     @rentals = []
     @parsed_rentals = []
   end
-  attr_accessor :people, :books, :rentals
+
+  def list_books
+    @books
+  end
+
+  def list_people
+    @people
+  end
+
+  def create_new_rental(person, book, date)
+    rental = Rental.new(person, book, date)
+    @rentals << rental
+  end
+
+  def list_rentals_id(id)
+    @rentals.select { |rental| rental.person.id == id }
+  end
 
   ## Create methods
 
@@ -28,6 +47,7 @@ class App
   include PreserveBooks
   include PreservePeople
   include PreserveRentals
+
   # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
