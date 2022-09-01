@@ -68,6 +68,7 @@ class Main
       puts 'Thank you for using this app!'
       @app.save_books
       @app.save_people
+      @app.save_rentals
       exit
     end
   end

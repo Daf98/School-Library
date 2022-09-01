@@ -1,11 +1,13 @@
 module PreserveRentals
   def save_rentals
     # emtpy JSON file
-    File.write('./rentals.json', '', mode: 'w')
+    File.write('./rentals.json', '', mode: 'a')
     # for each book in array, generate a JSON object with it
     # and append it to the JSON file into a new line
     @rentals.each do |rental|
-      json_rental = JSON.generate(rental)
+      puts rental
+      array_rental = [rental.person.name, rental.book.title, rental.date]
+      json_rental = JSON.generate(array_rental)
       File.write('./rentals.json', "#{json_rental}\n", mode: 'a')
     end
   end
