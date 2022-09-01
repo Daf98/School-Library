@@ -10,8 +10,8 @@
 
 ## Gettin Started
 
-# Prerequisites
-# Setup
+### Prerequisites
+#### Setup
 Cloning a repository
 
 - On GitHub.com, navigate to the main page of the repository;
