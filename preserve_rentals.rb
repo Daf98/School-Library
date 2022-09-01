@@ -1,5 +1,6 @@
 require './app'
 require 'json'
+
 module PreserveRentals
   def save_rentals
     # emtpy JSON file
@@ -15,7 +16,10 @@ module PreserveRentals
   # Retrieve data
   def retrieve_rentals
     # if the JSON file is empty, start 'write' mode
-    File.open('./rentals.json', 'w') unless File.exist?('./rentals.json')
+    unless File.exist?('./rentals.json') 
+      File.open('./rentals.json', 'w')
+      return []
+    end
     # if the JSON file is not empty, keep 'append' mode
     # emptying rental array
     @rentals = []
@@ -24,7 +28,8 @@ module PreserveRentals
       rental = JSON.parse(line)
       person = list_people.select { |p| p.name == rental[0] }
       books = list_books.select { |b| b.title == rental[1] }
-      @rentals << create_new_rental(person[0], books[0], rental[2])
+      rentals << create_new_rental(person[0], books[0], rental[2])
     end
+    @rentals
   end
 end

@@ -7,7 +7,8 @@ class Main
     # @app.retrieve
     @app.books = @app.retrieve_books
     @app.people = @app.retrieve_people
-    @app.retrieve_rentals
+    @app.rentals = @app.retrieve_rentals
+    
   end
   attr_accessor :people, :books, :rentals
 
