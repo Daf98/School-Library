@@ -20,7 +20,7 @@
 
 - GitHub: [@fibini](https://github.com/fibini)
 - Twitter: [@Onenewpage1](https://twitter.com/Onenewpage1)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/fabien-brathwaite)
+- LinkedIn: [fabien-brathwaite](https://linkedin.com/in/fabien-brathwaite)
 
 ## Show your support
 
