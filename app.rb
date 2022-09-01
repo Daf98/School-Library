@@ -82,7 +82,7 @@ class App
   # 6 - List all rentals
   def list_rentals
     @parsed_rentals.each do |rental|
-      print rental
+      print "Name: #{rental[0]}\n"
     end
   end
 end
