@@ -16,6 +16,8 @@
 - Twitter: [@dafne_azzolina](https://twitter.com/dafne_azzolina)
 - LinkedIn: [dafne-azzolina](https://www.linkedin.com/in/dafne-azzolina/)
 
+👤 **Fabien Brathwaite**
+
 - GitHub: [@fibini](https://github.com/fibini)
 - Twitter: [@Onenewpage1](https://twitter.com/Onenewpage1)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/fabien-brathwaite)
