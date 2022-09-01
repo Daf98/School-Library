@@ -8,7 +8,7 @@
 
 - Ruby
 
-## Gettin Started
+## Getting Started
 
 ### Prerequisites
 #### Setup
