@@ -7,6 +7,7 @@ require './list_people'
 require './create_rental'
 require './preserve_books'
 require './preserve_people'
+require './preserve_rentals'
 
 class App
   def initialize
@@ -25,6 +26,7 @@ class App
   include CreateRental
   include PreserveBooks
   include PreservePeople
+  include PreserveRentals
   # 3 - Create a person
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
