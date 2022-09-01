@@ -26,11 +26,11 @@ Cloning a repository
 
 - To clone a repository using GitHub CLI : gh repo clone Daf98/School_Library
 
-Open Terminal;
+- Open Terminal
 
-Change the current working directory to the location where you want the cloned directory;
+- Change the current working directory to the location where you want the cloned directory
 
-Type git clone, and then paste the URL you copied earlier;
+- Type git clone, and then paste the URL you copied earlier
 
 ## Authors
 
