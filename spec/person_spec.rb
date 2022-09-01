@@ -21,6 +21,13 @@ describe Person do
       it "should return 'of_age?' as true" do
         expect(@new_person.of_age?).to be_truthy
       end
+      it 'should create a rental' do
+        person = Person.new(24)
+        book = Book.new('title', 'author')
+        Rental.new(book, person, '2020/02/20')
+        # person.add_rentals(rental)
+        expect(person.rentals.length).to be(1)
+      end
     end
   end
 end

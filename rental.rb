@@ -2,7 +2,7 @@ require './person'
 require './book'
 
 class Rental
-  attr_reader :book, :person, :date
+  attr_accessor :book, :person, :date
 
   def initialize(book, person, date)
     @date = date
