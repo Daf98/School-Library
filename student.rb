@@ -3,7 +3,7 @@ require './classroom'
 
 class Student < Person
   # Create the belongs-to side (a student belongs to a classroom).
-  attr_reader :classroom
+  attr_reader :classroom, :parent_permission
 
   # rubocop:disable Style/OptionalBooleanParameter
   def initialize(age, name = 'Unknown', parent_permission = false)
